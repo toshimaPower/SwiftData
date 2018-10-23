@@ -10,17 +10,17 @@ import Foundation
 
 public struct Stack<T> {
     private var elements = [T]()
-    private var maxCount: Int
     
-    public init(maxCount: Int) {
-        self.maxCount = maxCount
+    public init() {}
+    public init(_ element: [T]) {
+        self.elements = element
+    }
+    
+    public init<S: Sequence>(_ s: S) where S.Iterator.Element == T {
+        self.elements = Array(s.reversed())
     }
     
     public mutating func push(element: T) {
-        if isFull {
-            print("Stack is Full")
-            return
-        }
         elements.append(element)
     }
     
@@ -39,8 +39,46 @@ public struct Stack<T> {
     public var isEmpty: Bool {
         return elements.isEmpty
     }
+
+}
+
+extension Stack: CustomStringConvertible, CustomDebugStringConvertible {
+    public var description: String {
+        return self.elements.description
+    }
     
-    public var isFull: Bool {
-        return elements.count == maxCount
+    public var debugDescription: String {
+        return self.elements.debugDescription
+    }
+}
+
+extension Stack: ExpressibleByArrayLiteral {
+    public init(arrayLiteral elements: T...) {
+        self.init(elements)
+    }
+}
+
+extension Stack: Sequence {
+//    public func makeIterator() -> ArrayIterator<T> {
+//        return ArrayIterator<T>(element: self.elements)
+//    }
+    
+    public func makeIterator() -> AnyIterator<T> {
+        return AnyIterator(IndexingIterator(_elements: self.elements.lazy.reversed()))
+    }
+}
+
+public struct ArrayIterator<T> : IteratorProtocol {
+    var currentElement: [T]
+    init(element: [T]) {
+        self.currentElement = element
+    }
+    
+    mutating public func next() -> T? {
+        if (currentElement.isEmpty) {
+            return nil
+        }
+        
+        return currentElement.popLast()
     }
 }
