@@ -122,4 +122,10 @@ extension Queue: MutableCollection {
             data[index] = newValue
         }
     }
+    
+    private func checkIndex(index: Int) {
+        if index < 0 || index > count {
+            fatalError("Index out of range")
+        }
+    }
 }
