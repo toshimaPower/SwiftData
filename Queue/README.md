@@ -10,6 +10,10 @@
 * MutableCollection protocol을 구현하는 부분에서 *Error* 원인은 다음기회에 찾아보자
 * 프로토콜에 익숙해지자 
 
+## Protocol 
+* MutableCollection  
+- 이 프로토콜을 추가하면 서브스크립트 문법을 통해 큐의 값을 설정하거나 가져올수 있다. 서브스크립트 문법을 통해 사용자가 인덱스 값을 특정할 수 있으므로 checkIndex() 메소드를 이용해서 해당 인덱스 값의 데이터인지 확인 
+
 # Sample
 
 // ArrayLiteral   
