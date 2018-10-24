@@ -89,3 +89,37 @@ extension Queue: Sequence {
         return AnyIterator(IndexingIterator(_elements: data.lazy))
     }
 }
+/*
+ associatedtype Element
+ 
+ associatedtype Index
+ 
+ associatedtype SubSequence
+ */
+extension Queue: MutableCollection {
+  
+    public typealias Index = Int
+    
+    public func index(after i: Int) -> Int {
+        return data.index(after: i)
+    }
+    
+    public var startIndex: Int {
+        return 0
+    }
+    
+    public var endIndex: Int {
+        return count - 1
+    }
+    
+    
+    public subscript(_ index: Int) -> T {
+        get {
+            
+            return data[index]
+        }
+        set {
+            data[index] = newValue
+        }
+    }
+}
