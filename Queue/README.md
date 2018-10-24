@@ -12,18 +12,18 @@
 
 # Sample
 
-// ArrayLiteral 
+// ArrayLiteral   
 var q1: Queue<Int> = [1, 2, 3, 4, 5]
 
-// q1에서 가져온 SequenceType을 받는 초기화 메소드를 이용해서 새로운 큐를 생성
-var q2 = Queue<Int>(q1)
+// q1에서 가져온 SequenceType을 받는 초기화 메소드를 이용해서 새로운 큐를 생성  
+var q2 = Queue<Int>(q1)  
 
-let q1x = q1.dequeue()
+let q1x = q1.dequeue()  
 
-q2.enqueue(55)
-// q2 = [1, 2, 3, 4, 5, 55]
+q2.enqueue(55)  
+// q2 = [1, 2, 3, 4, 5, 55]  
 
-// For..in은 SequenceType 프로토콜을 사용
-for el in q1 {
-   print(el)
+// For..in은 SequenceType 프로토콜을 사용  
+for el in q1 {  
+   print(el)  
 }
